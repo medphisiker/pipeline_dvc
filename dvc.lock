@@ -1,0 +1,32 @@
+schema: '2.0'
+stages:
+  step1:
+    cmd: docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace vlmevalkit:v0.2rc1-cu124
+      python scripts/writer.py
+    deps:
+    - path: pipeline/scripts/writer.py
+      hash: md5
+      md5: f6916341c6e2c64f877d1f9f87bf80e7
+      size: 454
+    outs:
+    - path: pipeline/data/task1_output.txt
+      hash: md5
+      md5: e20b902b49a98b1a05ed62804c757f94
+      size: 20
+  step2:
+    cmd: docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace --gpus all vlmevalkit:v0.2rc1-cu124
+      python scripts/reader.py
+    deps:
+    - path: pipeline/data/task1_output.txt
+      hash: md5
+      md5: e20b902b49a98b1a05ed62804c757f94
+      size: 20
+    - path: pipeline/scripts/reader.py
+      hash: md5
+      md5: a99a08add8e5612bda3b1383de603a70
+      size: 1026
+    outs:
+    - path: pipeline/data/task2_output.txt
+      hash: md5
+      md5: 0b4ecd0e1a7cef7a61d2da2b471b326f
+      size: 25

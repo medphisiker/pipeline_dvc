@@ -1,0 +1,15 @@
+stages:
+  step1:
+    cmd: docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace ${images.step1} python scripts/writer.py
+    deps:
+      - pipeline/scripts/writer.py
+    outs:
+      - pipeline/data/task1_output.txt
+
+  step2:
+    cmd: docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace --gpus all ${images.step2} python scripts/reader.py
+    deps:
+      - pipeline/scripts/reader.py
+      - pipeline/data/task1_output.txt
+    outs:
+      - pipeline/data/task2_output.txt
