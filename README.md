@@ -26,7 +26,7 @@ dvc repro
 Ниже приведен вывод терминала, исполняющего пайплайн:
 
 ```
-Running stage 'step1':                                                                                                                                
+Running stage 'step1':                                                                                                                                 
 > docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace vlmevalkit:v0.2rc1-cu124 python scripts/writer.py
 
 ==========
@@ -64,11 +64,9 @@ sh: 1: nvidia-smi: not found
 
 7
 
-8
+Updating lock file 'dvc.lock'                                                                                                                          
 
-Updating lock file 'dvc.lock'                                                                                                                         
-
-Running stage 'step2':                                                                                                                                
+Running stage 'step2':                                                                                                                                 
 > docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace --gpus all vlmevalkit:v0.2rc1-cu124 python scripts/reader.py
 
 ==========
@@ -85,16 +83,7 @@ https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
 
 A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
 
-
-A module that was compiled using NumPy 1.x cannot be run in
-NumPy 2.1.3 as it may crash. To support both 1.x and 2.x
-versions of NumPy, modules must be compiled with NumPy 2.0.
-Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
-
-If you are a user of the module, the easiest solution will be to
-downgrade to 'numpy<2' or try to upgrade the affected module.
-We expect that some modules will need time to support NumPy 2.
-      
+Tue Nov 26 09:20:59 2024       
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.216.01             Driver Version: 535.216.01   CUDA Version: 12.4     |
 |-----------------------------------------+----------------------+----------------------+
@@ -127,8 +116,7 @@ torch.cuda.get_device_name(0) NVIDIA A10
 10
 12
 14
-16
-Updating lock file 'dvc.lock'                                                                                                                         
+Updating lock file 'dvc.lock'                                                                                                                          
 
 To track the changes with git, run:
 
