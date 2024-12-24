@@ -1,15 +1,21 @@
 stages:
-  step1:
-    cmd: docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace ${images.step1} python scripts/writer.py
+  model_answering:
+    cmd: docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace --gpus all ${model_answering_step.image} python scripts/writer.py
     deps:
       - pipeline/scripts/writer.py
+      - params.yaml
+    params:
+      - model_answering_step.image
     outs:
       - pipeline/data/task1_output.txt
 
-  step2:
-    cmd: docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace --gpus all ${images.step2} python scripts/reader.py
+  answers_eval_step:
+    cmd: docker run --rm -v $(pwd)/pipeline:/workspace -w /workspace ${answers_eval_step.image} python scripts/reader.py
     deps:
       - pipeline/scripts/reader.py
       - pipeline/data/task1_output.txt
+      - params.yaml
+    params:
+      - answers_eval_step.image
     outs:
       - pipeline/data/task2_output.txt

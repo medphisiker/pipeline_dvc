@@ -1,3 +1,3 @@
 images:
-  step1: vlmevalkit:v0.2rc1-cu124
-  step2: vlmevalkit:v0.2rc1-cu124
+  step1: ghcr.io/vlmhyperbenchteam/qwen2-vl:ubuntu22.04-cu124-torch2.4.0_v0.1.0
+  step2: ghcr.io/vlmhyperbenchteam/qwen2-vl:ubuntu22.04-cu124-torch2.4.0_v0.1.0
